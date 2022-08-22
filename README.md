@@ -2,7 +2,7 @@
 
 👋🏻 Hello, I'm Mario! I have several years of experience as a Communicator in the digital world and I've just finished my training as a Full Stack Web Developer. 
 
-🙂 I consider that I have analytical skills from the details to the whole, always oriented to the user experience.
+🙂 I have analytical skills from the details to the whole, always oriented to the user experience.
 
 🗣️ As a communicator I always prioritize people. I value social relationships and networking. I believe that a good storytelling makes a good product. 
 
