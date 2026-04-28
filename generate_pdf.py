@@ -186,6 +186,11 @@ def build_comparison_table(styles, page_width):
             P("Launch: hasta ~15.000 emails/mes (1 Action por email). Growth: hasta ~40.000/mes. Sin tope por usuario.", "td"),
         ],
         [
+            P("Integracion con LinkedIn", "td_label"),
+            P("<font color='#D97706'><b>Parcial</b></font>. Enriquece datos de perfiles + Chrome ext. para revelar emails sobre LinkedIn. <b>Tasks manuales en sequencer</b> (te recuerda ir a LinkedIn y hacerlo a mano). <b>NO automatiza connections/mensajes</b> (LinkedIn lo bloqueo en marzo 2025).", "td"),
+            P("<font color='#D97706'><b>Solo enriquecimiento de datos</b></font>. Saca datos de perfiles, posts, job changes via providers (consume creditos). <b>NO automatiza acciones en LinkedIn</b>. Tiene integracion nativa con HeyReach/Expandi para automatizacion (suscripcion aparte ~$79-$99/mes).", "td"),
+        ],
+        [
             P("Match rate de email", "td_label"),
             P("~65-80% (single-source).", "td"),
             P("~78%+ por waterfall multi-provider.", "td"),
@@ -265,7 +270,8 @@ def build_pros_cons_table(styles, page_width):
         "- Match rate de email ~65-80%: bounce rate mas alto que Clay.<br/>"
         "- Cobranza por usuario: si suma el equipo, escala lineal.<br/>"
         "- Telefono cuesta 8x mas creditos que email.<br/>"
-        "- Workflows custom limitados comparado con la flexibilidad spreadsheet de Clay."
+        "- Workflows custom limitados comparado con la flexibilidad spreadsheet de Clay.<br/>"
+        "- LinkedIn: ya no automatiza acciones (LinkedIn lo bloqueo en 2025). Tasks son manuales."
     )
     clay_pros = (
         "<b>Pros:</b><br/>"
@@ -285,7 +291,8 @@ def build_pros_cons_table(styles, page_width):
         "- Campanias masivas con research profundo: 2.500 Data Credits se queman en 500-800 contactos.<br/>"
         "- Curva de aprendizaje alta: requiere RevOps o varias semanas para sacarle jugo.<br/>"
         "- Failed lookups igual cobran credito.<br/>"
-        "- Top-ups con 30-50% de premium sobre la tarifa de plan."
+        "- Top-ups con 30-50% de premium sobre la tarifa de plan.<br/>"
+        "- LinkedIn: solo enriquecimiento de datos. Para automatizar mensajes/connections necesitas HeyReach o Expandi aparte ($79-99/mes adicionales)."
     )
 
     rows = [
@@ -627,6 +634,23 @@ def build_pdf(output_path: str = "Apollo_vs_Clay_Analisis.pdf"):
     story.append(Paragraph("4. Pros y contras de cada herramienta", styles["h1"]))
     story.append(Spacer(1, 4))
     story.append(build_pros_cons_table(styles, page_width))
+
+    story.append(Spacer(1, 10))
+    story.append(Paragraph("Aclaracion sobre LinkedIn (importante)", styles["h2"]))
+    story.append(Paragraph(
+        "En 2026 ninguna de las dos herramientas automatiza acciones reales en LinkedIn (mensajes, connection requests, "
+        "InMails). LinkedIn cracked-down a Apollo, Seamless.ai y otros en marzo 2025, removiendo su acceso de scraping. "
+        "Lo que ofrecen hoy es:",
+        styles["body"]
+    ))
+    bullets_li = [
+        "<b>Apollo:</b> Chrome extension para revelar emails desde LinkedIn + tasks manuales en el sequencer (te recuerda ir a hacerlo a mano).",
+        "<b>Clay:</b> enriquecimiento de datos de perfiles (job title, posts, job changes) consumiendo Data Credits + integracion nativa con HeyReach (~$79/mes).",
+        "<b>Para automatizar LinkedIn de verdad</b> (que es lo unico que escala) ambas requieren un tool externo: HeyReach, Expandi o La Growth Machine, costando $79-$120/mes adicionales por seat.",
+        "<b>Conclusion:</b> en LinkedIn las dos estan parejas (= ninguna lo hace nativo). Esto NO debe ser un factor decisivo entre Apollo y Clay.",
+    ]
+    for b in bullets_li:
+        story.append(Paragraph(b, styles["bullet"], bulletText="•"))
 
     # ------------- 5. COSTOS -------------
     story.append(Paragraph("5. Costo real proyectado", styles["h1"]))
