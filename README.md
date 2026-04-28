@@ -1,16 +1,34 @@
-<img src="https://media-exp1.licdn.com/dms/image/C4D16AQGz0KduXw3YUg/profile-displaybackgroundimage-shrink_350_1400/0/1651952074908?e=1665619200&v=beta&t=WQqQaYW39a0PFNbX3qzEMWJrBTxxyt_iKmsig77WsVY" />
+# Apollo vs Clay - Analisis comparativo
 
-👋🏻 Hello, I'm Mario! I have several years of experience as a Communicator in the digital world and I've just finished my training as a Full Stack Web Developer. 
+Generador de un PDF descargable con el analisis comparativo entre Apollo.io y Clay.com,
+pensado para llevar a una conversacion de decision con la gerencia de una agencia de marketing.
 
-🙂 I have analytical skills from the details to the whole, always oriented to the user experience.
+## Como generar el PDF
 
-🗣️ As a communicator I always prioritize people. I value social relationships and networking. I believe that a good storytelling makes a good product. 
+Requisitos: Python 3 y `reportlab`.
 
-💻 As a Full Stack Web Developer I was trained in JavaScript, CSS, ReactJS, NodeJS and SQL.
+```bash
+pip install reportlab
+python3 generate_pdf.py
+```
 
-🤠 "Making things happen" is my leitmotif, by being curious and determined.
+Salida: `Apollo_vs_Clay_Analisis.pdf` (6 paginas).
 
-😜 Is it me you're looking for?<br>
-WhatsApp: +54 9 11 3346 3508<br>
-E-mail: marioealfonzo@gmail.com<br>
-Linkedin: https://www.linkedin.com/in/alfonzomario/
+## Que contiene el PDF
+
+1. **Caratula con veredicto en una linea**
+2. **Contexto y problema actual**
+3. **Tabla comparativa Apollo vs Clay** (15 criterios: precio, base de datos, deep research,
+   personalizacion, envio de emails, match rate, curva de aprendizaje, costo por lead,
+   riesgo de overage, etc.)
+4. **Pros y contras** de cada herramienta lado a lado
+5. **Costo real proyectado** con escenarios para 1, 2 y 3 SDRs
+6. **Matriz de decision**: cuando elegir cual segun prioridad
+7. **Recomendacion final** con plan de accion sugerido
+
+## Veredicto
+
+Para una agencia con presupuesto acotado que necesita combinar campanias masivas y
+campanias top-200 con personalizacion, **Apollo Professional ($79/usuario/mes anual)**
+es la eleccion recomendada. Clay sigue siendo mejor para deep research puro, pero su modelo
+de creditos + ausencia de envio nativo eleva el costo total al doble o mas.
