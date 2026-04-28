@@ -176,6 +176,16 @@ def build_comparison_table(styles, page_width):
             P("<font color='#16A34A'><b>SI</b></font> - sequencer nativo (powered by Smartlead) lanzado en 2025. <b>Limites:</b> hasta 4 pasos por campania, solo email, sin inbox rotation avanzada.", "td"),
         ],
         [
+            P("Casillas de email (mailboxes) por usuario", "td_label"),
+            P("Basic: ~1-2 / <b>Pro: 5 mailboxes/usuario</b> / Org: 15 mailboxes/usuario. Recomendado 50 emails/dia/mailbox.", "td"),
+            P("<b>Ilimitadas por workspace</b> (no por usuario). Recomendado ~24 emails/dia/mailbox. El cupo real lo limitan los Actions del plan.", "td"),
+        ],
+        [
+            P("Volumen practico de envio", "td_label"),
+            P("<b>Pro: ~250 emails/dia/usuario</b> (5 mailboxes x 50). Mensual: ~5.000-7.500 emails. Org: ~750/dia/usuario.", "td"),
+            P("Launch: hasta ~15.000 emails/mes (1 Action por email). Growth: hasta ~40.000/mes. Sin tope por usuario.", "td"),
+        ],
+        [
             P("Match rate de email", "td_label"),
             P("~65-80% (single-source).", "td"),
             P("~78%+ por waterfall multi-provider.", "td"),
@@ -380,6 +390,38 @@ def build_decision_matrix(styles, page_width):
     return table
 
 
+def build_mailbox_table(styles, page_width):
+    P = lambda t, s="td": Paragraph(t, styles[s])
+    rows = [
+        [P("Plan", "th"), P("Mailboxes incluidas", "th"), P("Emails / dia recomendados", "th"), P("Volumen mensual aprox", "th")],
+        [P("Apollo <b>Basic</b> ($49/usuario/mes)", "td"), P("1-2 por usuario", "td"), P("50/dia/mailbox", "td"), P("~1.000-2.500 emails/usuario/mes", "td")],
+        [P("Apollo <b>Professional</b> ($79/usuario/mes)", "td"), P("<b>5 mailboxes/usuario</b>", "td"), P("50/dia/mailbox = 250/dia/usuario", "td"), P("<b>~5.000-7.500 emails/usuario/mes</b>", "td")],
+        [P("Apollo <b>Organization</b> ($119/usuario/mes)", "td"), P("15 mailboxes/usuario", "td"), P("50/dia/mailbox = 750/dia/usuario", "td"), P("~15.000-22.500 emails/usuario/mes", "td")],
+        [P("Clay <b>Launch</b> ($167/mes)", "td"), P("Ilimitadas por workspace*", "td"), P("~24/dia/mailbox sugerido", "td"), P("Tope ~<b>15.000 emails/mes</b> (limite Actions)", "td")],
+        [P("Clay <b>Growth</b> ($446/mes)", "td"), P("Ilimitadas por workspace*", "td"), P("~24/dia/mailbox sugerido", "td"), P("Tope ~<b>40.000 emails/mes</b> (limite Actions)", "td")],
+    ]
+    col_widths = [page_width * 0.30, page_width * 0.20, page_width * 0.24, page_width * 0.26]
+    table = Table(rows, colWidths=col_widths, repeatRows=1)
+    table.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, 0), PRIMARY),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+                ("ALIGN", (0, 0), (-1, 0), "CENTER"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 8),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 8),
+                ("TOPPADDING", (0, 0), (-1, -1), 7),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 7),
+                ("ROWBACKGROUNDS", (0, 1), (-1, 3), [colors.HexColor("#EFF6FF"), colors.HexColor("#DBEAFE")]),
+                ("ROWBACKGROUNDS", (0, 4), (-1, 5), [colors.HexColor("#F5F3FF"), colors.HexColor("#EDE9FE")]),
+                ("BOX", (0, 0), (-1, -1), 0.6, MID_BG),
+                ("LINEBELOW", (0, 0), (-1, -1), 0.4, MID_BG),
+            ]
+        )
+    )
+    return table
+
+
 def build_cost_table(styles, page_width):
     P = lambda t, s="td": Paragraph(t, styles[s])
     rows = [
@@ -534,13 +576,60 @@ def build_pdf(output_path: str = "Apollo_vs_Clay_Analisis.pdf"):
 
     story.append(PageBreak())
 
-    # ------------- 3. PROS Y CONTRAS -------------
-    story.append(Paragraph("3. Pros y contras de cada herramienta", styles["h1"]))
+    # ------------- 3. CASILLAS DE EMAIL Y VOLUMEN DE ENVIO -------------
+    story.append(Paragraph("3. Casillas de email y volumen de envio", styles["h1"]))
+    story.append(Paragraph(
+        "Pregunta clave para deliverability y para saber cuantas campanias podemos correr en paralelo: "
+        "<b>cuantas casillas (mailboxes) podemos conectar y cuantos emails podemos enviar por dia</b>. "
+        "Las dos plataformas tienen modelos distintos.",
+        styles["body"]
+    ))
+    story.append(Spacer(1, 4))
+    story.append(build_mailbox_table(styles, page_width))
+    story.append(Spacer(1, 8))
+    story.append(Paragraph(
+        "<b>Como se lee esta tabla:</b>", styles["body"]
+    ))
+    bullets_mailbox = [
+        "<b>Apollo cobra por usuario y te da casillas por usuario.</b> Si tenemos 1 SDR en Pro: 5 casillas con capacidad real de ~250 emails/dia. Si sumamos otro SDR ($79 mas): otras 5 casillas y duplicamos volumen.",
+        "<b>Clay cobra por workspace, casillas ilimitadas.</b> Conectas las que quieras, todas comparten el mismo cupo de Actions del plan. En Launch (15.000 Actions/mes) podes enviar ~15.000 emails antes de quedarte sin nada para enrichments.",
+        "Apollo recomienda 50 emails/dia/mailbox (mas conservador que el limite de Gmail/Workspace de 500-2.000). Clay recomienda ~24/dia/mailbox para mejor deliverability.",
+        "<b>* En Clay las casillas son por workspace</b>: no se duplican si suman SDRs. Eso es bueno (no pagas por usuario) pero malo si necesitas mucho volumen (te limitan los Actions).",
+        "Para campanias serias (1.000+ emails/dia) en cualquiera de las dos conviene comprar dominios alternativos y hacer warmup. Esto es independiente de la herramienta.",
+    ]
+    for b in bullets_mailbox:
+        story.append(Paragraph(b, styles["bullet"], bulletText="•"))
+
+    story.append(Spacer(1, 8))
+    callout = (
+        "<b>Conclusion practica para nuestra agencia:</b><br/>"
+        "Con Apollo Professional, 1 usuario = 5 casillas = ~5.000-7.500 emails/mes con buena deliverability. "
+        "Con Clay Launch, sin tope de casillas pero con tope de 15.000 emails/mes que tambien comparten con "
+        "los enrichments y AI snippets. <b>Clay obliga a elegir entre research o envio</b>; Apollo tiene cupos separados."
+    )
+    callout_box = Table([[Paragraph(callout, styles["verdict_body"])]], colWidths=[page_width])
+    callout_box.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, -1), APOLLO_COLOR),
+                ("LEFTPADDING", (0, 0), (-1, -1), 14),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 14),
+                ("TOPPADDING", (0, 0), (-1, -1), 12),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 12),
+            ]
+        )
+    )
+    story.append(callout_box)
+
+    story.append(PageBreak())
+
+    # ------------- 4. PROS Y CONTRAS -------------
+    story.append(Paragraph("4. Pros y contras de cada herramienta", styles["h1"]))
     story.append(Spacer(1, 4))
     story.append(build_pros_cons_table(styles, page_width))
 
-    # ------------- 4. COSTOS -------------
-    story.append(Paragraph("4. Costo real proyectado", styles["h1"]))
+    # ------------- 5. COSTOS -------------
+    story.append(Paragraph("5. Costo real proyectado", styles["h1"]))
     story.append(Paragraph(
         "El precio de lista no es el costo real. Hay que sumar overages, extra users (Apollo), "
         "y herramienta de envio externa (Clay).",
@@ -558,8 +647,8 @@ def build_pdf(output_path: str = "Apollo_vs_Clay_Analisis.pdf"):
 
     story.append(PageBreak())
 
-    # ------------- 5. MATRIZ DE DECISION -------------
-    story.append(Paragraph("5. Matriz de decision: cuando elegir cual", styles["h1"]))
+    # ------------- 6. MATRIZ DE DECISION -------------
+    story.append(Paragraph("6. Matriz de decision: cuando elegir cual", styles["h1"]))
     story.append(Paragraph(
         "Esta tabla resume bajo que prioridad cada herramienta gana. Buscamos el match con nuestras prioridades "
         "como agencia.",
@@ -568,8 +657,8 @@ def build_pdf(output_path: str = "Apollo_vs_Clay_Analisis.pdf"):
     story.append(Spacer(1, 4))
     story.append(build_decision_matrix(styles, page_width))
 
-    # ------------- 6. RECOMENDACION FINAL -------------
-    story.append(Paragraph("6. Recomendacion final para la agencia", styles["h1"]))
+    # ------------- 7. RECOMENDACION FINAL -------------
+    story.append(Paragraph("7. Recomendacion final para la agencia", styles["h1"]))
 
     rec_text = (
         "<b>Recomendamos APOLLO Professional</b> ($79/usuario/mes anual) por estas razones:"
@@ -580,6 +669,7 @@ def build_pdf(output_path: str = "Apollo_vs_Clay_Analisis.pdf"):
         "<b>Base de datos propia incluida</b> (275M+ contactos): descubrimos prospects sin gastar creditos por cada lookup, como pasa hoy en Clay.",
         "<b>AI Research nativo</b>: 7.500 cuentas/mes con research IA contra paginas web (Perplexity Sonar). Suficientemente profundo para personalizar emails 1:1 en campanias top 200 y tambien correr campanias masivas en paralelo.",
         "<b>Sequencer multi-paso + dialer US integrados</b>: el sequencer de Clay es basico (max 4 pasos por campania, solo email, sin inbox rotation avanzada). Apollo lo supera para volumen serio.",
+        "<b>5 casillas de email por usuario</b> en Pro: ~250 emails/dia/usuario con buena deliverability. Cupo separado del de research (en Clay todo sale del mismo bolsillo de Actions).",
         "<b>Costo predecible</b>: el sistema de un solo credito es mas simple que el doble credito de Clay (Data + Actions) y evita los top-ups con 30-50% de premium.",
         "<b>Curva de aprendizaje baja</b>: el equipo arranca en horas, no semanas. Clay requiere mentalidad RevOps que hoy no tenemos dedicada.",
         "<b>Habilita las dos campanias que necesitamos</b>: top 200 con personalizacion + campanias masivas con personalizacion media. Clay solo cubre bien la primera por costo.",
