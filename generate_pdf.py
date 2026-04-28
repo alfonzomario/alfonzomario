@@ -156,9 +156,9 @@ def build_comparison_table(styles, page_width):
             P("Por mes + 2 tipos de credito (Data + Actions). Roll-over hasta 2x.", "td"),
         ],
         [
-            P("Base de datos propia", "td_label"),
-            P("<font color='#16A34A'><b>SI</b></font> - 275M+ contactos / 60M+ empresas.", "td"),
-            P("<font color='#DC2626'><b>NO</b></font> - vos llevas la lista. Conecta a 150+ providers.", "td"),
+            P("Busqueda de contactos", "td_label"),
+            P("<font color='#16A34A'><b>SI</b></font> - base propia 275M+ contactos / 60M+ empresas, incluida en plan.", "td"),
+            P("<font color='#D97706'><b>SI, pero consume creditos</b></font> - 150+ providers via Data Credits. Por eso conviene traer lista propia.", "td"),
         ],
         [
             P("Deep research con IA", "td_label"),
@@ -172,8 +172,8 @@ def build_comparison_table(styles, page_width):
         ],
         [
             P("Envio de emails / sequencer", "td_label"),
-            P("<font color='#16A34A'><b>SI</b></font>, integrado + dialer US.", "td"),
-            P("<font color='#DC2626'><b>NO</b></font>. Necesitas Instantly/Smartlead aparte.", "td"),
+            P("<font color='#16A34A'><b>SI</b></font> - sequencer multi-paso + dialer US + A/B testing.", "td"),
+            P("<font color='#16A34A'><b>SI</b></font> - sequencer nativo (powered by Smartlead) lanzado en 2025. <b>Limites:</b> hasta 4 pasos por campania, solo email, sin inbox rotation avanzada.", "td"),
         ],
         [
             P("Match rate de email", "td_label"),
@@ -241,36 +241,41 @@ def build_pros_cons_table(styles, page_width):
 
     apollo_pros = (
         "<b>Pros:</b><br/>"
-        "+ Tiene base de datos propia (275M+ contactos): no traes lista, la armas adentro.<br/>"
-        "+ Sequencer + dialer integrados: no necesitas Instantly/Smartlead aparte.<br/>"
+        "+ Base de datos de 275M+ contactos incluida en el plan: descubris prospects sin gastar creditos extra.<br/>"
+        "+ Sequencer multi-paso + dialer US integrados, con A/B testing avanzado.<br/>"
         "+ AI Research te alcanza para 7.500 cuentas/mes en Professional.<br/>"
         "+ Costo predecible y barato a escala (~$79/usuario/mes).<br/>"
         "+ Curva de aprendizaje baja: tu equipo arranca en horas, no semanas.<br/>"
-        "+ Permite campanias masivas SIN quemar todo el presupuesto."
+        "+ Permite campanias masivas SIN quemar el presupuesto en research.<br/>"
+        "+ Intent data y filtros avanzados (technographics, funding, hiring) nativos."
     )
     apollo_cons = (
         "<b>Contras:</b><br/>"
         "- AI Research es bueno pero no tan profundo como Claygent (no encadena scraping multi-fuente).<br/>"
         "- Match rate de email ~65-80%: bounce rate mas alto que Clay.<br/>"
         "- Cobranza por usuario: si suma el equipo, escala lineal.<br/>"
-        "- Telefono cuesta 8x mas creditos que email."
+        "- Telefono cuesta 8x mas creditos que email.<br/>"
+        "- Workflows custom limitados comparado con la flexibilidad spreadsheet de Clay."
     )
     clay_pros = (
         "<b>Pros:</b><br/>"
-        "+ Claygent: research mas profundo del mercado (web + LinkedIn + news).<br/>"
-        "+ Match rate ~78%+ por waterfall multi-provider.<br/>"
-        "+ Workflows custom: lo que imagines, lo armas.<br/>"
+        "+ Claygent: research mas profundo del mercado (web + LinkedIn + news + careers).<br/>"
+        "+ Match rate ~78%+ por waterfall multi-provider sobre 150+ fuentes.<br/>"
+        "+ Workflows custom tipo spreadsheet: lo que imagines, lo armas.<br/>"
         "+ Sin tope de usuarios: el equipo entero usa una sola cuenta.<br/>"
-        "+ Calidad de output premium para top accounts."
+        "+ Sequencer nativo (powered by Smartlead) ya integrado: 0,1 credito por email enviado, 0,5 por AI snippet.<br/>"
+        "+ Calidad de output premium para top accounts.<br/>"
+        "+ Roll-over de Data Credits hasta 2x del cupo mensual."
     )
     clay_cons = (
         "<b>Contras:</b><br/>"
-        "- <b>NO envia emails</b>: necesitas Instantly/Smartlead/Lemlist aparte (+$40-100/mes).<br/>"
-        "- <b>NO tiene base de datos propia</b>: traes la lista o pagas providers.<br/>"
+        "- <b>Sequencer es basico:</b> max 4 pasos por campania, solo email, sin inbox rotation avanzada ni IP management. Para volumen serio igual hace falta Instantly/Smartlead.<br/>"
+        "- Buscar contactos en Clay tambien consume Data Credits (por eso traes lista propia hoy).<br/>"
         "- Doble sistema de creditos (Data + Actions) = factura impredecible.<br/>"
-        "- Campanias masivas: 2.500 Data Credits se queman en 500-800 contactos con workflow profundo.<br/>"
+        "- Campanias masivas con research profundo: 2.500 Data Credits se queman en 500-800 contactos.<br/>"
         "- Curva de aprendizaje alta: requiere RevOps o varias semanas para sacarle jugo.<br/>"
-        "- Failed lookups igual cobran credito."
+        "- Failed lookups igual cobran credito.<br/>"
+        "- Top-ups con 30-50% de premium sobre la tarifa de plan."
     )
 
     rows = [
@@ -316,7 +321,7 @@ def build_decision_matrix(styles, page_width):
         [
             P("Mandar campanias masivas (1.000+ leads/mes) con personalizacion media", "td"),
             P("<b><font color='#1E40AF'>APOLLO</font></b>", "td"),
-            P("Apollo Pro te da base de datos + 7.500 AI researches/mes + sequencer integrado. Clay se queda corto y te obliga a sumar otra herramienta de envio.", "td"),
+            P("Apollo Pro te da base de datos + 7.500 AI researches/mes + sequencer multi-paso. El sequencer de Clay es basico (max 4 pasos, sin inbox rotation) y a ese volumen los creditos se evaporan.", "td"),
         ],
         [
             P("Top 50-200 cuentas con research super profundo (campanias ABM premium)", "td"),
@@ -346,7 +351,7 @@ def build_decision_matrix(styles, page_width):
         [
             P("Tener TODO en una sola herramienta (DB + research + envio)", "td"),
             P("<b><font color='#1E40AF'>APOLLO</font></b>", "td"),
-            P("Clay no manda emails. Necesitas Instantly/Smartlead/Lemlist aparte ($40-100/mes mas).", "td"),
+            P("Apollo trae base de datos propia + sequencer multi-paso + dialer. Clay tambien envia, pero su sequencer es basico (max 4 pasos) y la base de datos se paga por cada lookup.", "td"),
         ],
         [
             P("Optimizar el costo por lead a escala", "td"),
@@ -400,19 +405,19 @@ def build_cost_table(styles, page_width):
             P("~500 (Launch) / ~2.000 (Growth) con workflows profundos", "td"),
         ],
         [
-            P("Necesita herramienta de envio extra?", "td_label"),
-            P("<font color='#16A34A'><b>NO</b></font> - sequencer incluido", "td"),
-            P("<font color='#DC2626'><b>SI</b></font> - sumale Instantly $37-77/mes o Smartlead $32-78/mes", "td"),
+            P("Sequencer de envio incluido?", "td_label"),
+            P("<font color='#16A34A'><b>SI</b></font> - multi-paso + A/B testing + dialer US", "td"),
+            P("<font color='#16A34A'><b>SI</b></font>, basico (max 4 pasos, solo email). Cada email = 0,1 Action. Para volumen alto conviene sumar sender externo.", "td"),
         ],
         [
             P("Costo realista total para 1 SDR", "td_label"),
             P("<b>~$79-$130 / mes</b>", "td"),
-            P("<b>~$200-$520 / mes</b> (Clay + sender)", "td"),
+            P("<b>~$167-$520 / mes</b> (sin sender extra)", "td"),
         ],
         [
             P("Costo realista total para 3 SDRs", "td_label"),
             P("<b>~$237-$390 / mes</b>", "td"),
-            P("<b>~$200-$520 / mes</b> (mismo precio, sin tope users)", "td"),
+            P("<b>~$167-$520 / mes</b> (mismo precio, sin tope users)", "td"),
         ],
     ]
     col_widths = [page_width * 0.34, page_width * 0.30, page_width * 0.36]
@@ -474,10 +479,11 @@ def build_pdf(output_path: str = "Apollo_vs_Clay_Analisis.pdf"):
     # Highlight veredict box on cover
     verdict_text = (
         "<b>Veredicto en una linea:</b><br/>"
-        "Para nuestra agencia (volumen + presupuesto acotado + necesidad de campanias masivas Y top 200), "
+        "Para nuestra agencia (presupuesto acotado + necesidad de combinar campanias masivas Y top 200 con personalizacion), "
         "<b>APOLLO Professional ($79/usuario/mes)</b> es la eleccion correcta. "
-        "Clay es superior tecnicamente pero su modelo de creditos lo hace inviable sin sumarle ademas "
-        "una herramienta de envio. Apollo cubre el 80% del valor a 1/3 del costo total."
+        "Clay es superior en profundidad de research, pero su modelo de creditos hace que cada lookup, email enviado "
+        "y AI snippet pague tarifa. Apollo trae base de datos incluida, sequencer multi-paso y AI Research suficiente "
+        "para personalizar a escala, a 1/3 del costo total."
     )
     verdict_box = Table(
         [[Paragraph(verdict_text, styles["verdict_body"])]],
@@ -500,17 +506,20 @@ def build_pdf(output_path: str = "Apollo_vs_Clay_Analisis.pdf"):
     # ------------- 1. CONTEXTO -------------
     story.append(Paragraph("1. Contexto y problema actual", styles["h1"]))
     story.append(Paragraph(
-        "Hoy usamos Clay para campanias tipo top 200 con deep research por cuenta. La calidad del output es buena, "
-        "pero el modelo de creditos hace que cada campania nos consuma mucho presupuesto, dejandonos sin margen "
-        "para correr campanias masivas en paralelo. Antes usabamos Apollo, y la duda es si volver a Apollo "
-        "(o quedarnos en Clay) sin perder personalizacion ni calidad.",
+        "Hoy usamos Clay para campanias tipo top 200: pasamos una lista de 200 prospects buscados a mano, Clay corre "
+        "deep research por cuenta y arma un email personalizado. Tambien enviamos las campanias desde el Sequencer nativo "
+        "de Clay. La calidad del output es buena, pero el modelo de creditos hace que cada campania nos consuma "
+        "mucho presupuesto, dejandonos sin margen para correr campanias masivas en paralelo. Antes usabamos Apollo, "
+        "y la duda es si volver a Apollo (o quedarnos en Clay) sin perder personalizacion ni calidad.",
         styles["body"]
     ))
     story.append(Paragraph(
-        "<b>Conclusion del analisis:</b> son productos distintos, no equivalentes. Apollo es una <i>plataforma de "
-        "prospecting all-in-one</i> (base de datos + research + envio). Clay es un <i>motor de enriquecimiento + "
-        "research</i> sin base de datos propia ni envio. La eleccion depende de que valoremos mas: profundidad de "
-        "research por cuenta, o cobertura masiva con costo predecible.",
+        "<b>Conclusion del analisis:</b> ambas plataformas hoy hacen lo mismo a alto nivel (busqueda de contactos, "
+        "research IA y envio de emails), pero con filosofias muy distintas. Apollo es una <i>plataforma all-in-one con "
+        "base de datos propia incluida</i>, sequencer multi-paso y dialer; el research IA es solido pero menos profundo. "
+        "Clay es un <i>motor de enriquecimiento y research premium</i> con un sequencer nativo basico (lanzado en 2025), "
+        "donde cada paso (incluido buscar contactos o enviar emails) consume creditos. La eleccion depende de si "
+        "valoramos mas la profundidad por cuenta, o la cobertura masiva con costo predecible.",
         styles["body"]
     ))
 
@@ -568,12 +577,12 @@ def build_pdf(output_path: str = "Apollo_vs_Clay_Analisis.pdf"):
     story.append(Paragraph(rec_text, styles["body"]))
 
     bullets = [
-        "<b>Base de datos propia incluida</b> (275M+ contactos): no dependemos de comprar listas ni pagar providers extra para descubrir prospectos.",
+        "<b>Base de datos propia incluida</b> (275M+ contactos): descubrimos prospects sin gastar creditos por cada lookup, como pasa hoy en Clay.",
         "<b>AI Research nativo</b>: 7.500 cuentas/mes con research IA contra paginas web (Perplexity Sonar). Suficientemente profundo para personalizar emails 1:1 en campanias top 200 y tambien correr campanias masivas en paralelo.",
-        "<b>Sequencer + dialer integrados</b>: no necesitamos sumar Instantly, Smartlead o Lemlist aparte (ahorro de $40-100/mes).",
-        "<b>Costo predecible</b>: aunque tenga creditos, el sistema es mas simple que el doble credito de Clay y no se dispara con top-ups del 30-50%.",
+        "<b>Sequencer multi-paso + dialer US integrados</b>: el sequencer de Clay es basico (max 4 pasos por campania, solo email, sin inbox rotation avanzada). Apollo lo supera para volumen serio.",
+        "<b>Costo predecible</b>: el sistema de un solo credito es mas simple que el doble credito de Clay (Data + Actions) y evita los top-ups con 30-50% de premium.",
         "<b>Curva de aprendizaje baja</b>: el equipo arranca en horas, no semanas. Clay requiere mentalidad RevOps que hoy no tenemos dedicada.",
-        "<b>Habilita las dos campanias que necesitamos</b>: top 200 con personalizacion + campanias masivas con personalizacion media. Clay solo cubre bien la primera.",
+        "<b>Habilita las dos campanias que necesitamos</b>: top 200 con personalizacion + campanias masivas con personalizacion media. Clay solo cubre bien la primera por costo.",
     ]
     for b in bullets:
         story.append(Paragraph(b, styles["bullet"], bulletText="•"))
